@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "i2c_master.h": "c",
+        "stdio.h": "c",
+        "stdint.h": "c",
+        "freertos.h": "c",
+        "pms.h": "c",
+        "cstdint": "cpp",
+        "gpio.h": "c",
+        "uart.h": "c",
+        "esp_assert.h": "c"
+    },
+    "idf.flashType": "UART"
+}
