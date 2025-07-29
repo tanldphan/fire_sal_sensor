@@ -66,7 +66,7 @@
 #define BUFFER_IO 1
 
 
-int lora_init (void);
+int lora_init (_Bool first_init);
 void lora_send_packet (uint8_t* buf, int size);
 int lora_receive_packet (uint8_t* buf, int size);
 void lora_reset (void);

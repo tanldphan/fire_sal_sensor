@@ -72,7 +72,7 @@ void lora_read_reg_buffer (int reg, uint8_t* val, int len)
 }
 
 
-int lora_init (void)
+int lora_init (_Bool first_init)
 {
     esp_err_t ret;
     gpio_reset_pin (LORA_RST_GPIO);
@@ -80,7 +80,8 @@ int lora_init (void)
     gpio_reset_pin (LORA_CS_GPIO);
     gpio_set_direction (LORA_CS_GPIO, GPIO_MODE_OUTPUT);
     gpio_set_level (LORA_CS_GPIO, 1);
-
+    if (first_init)
+    {
     spi_bus_config_t bus = { .miso_io_num = LORA_MISO_GPIO,
                              .mosi_io_num = LORA_MOSI_GPIO,
                              .sclk_io_num = LORA_SCK_GPIO,
@@ -98,6 +99,7 @@ int lora_init (void)
                                           .pre_cb = NULL };
     ret = spi_bus_add_device (LORA_SPI_NUM, &dev, &_spi);
     assert (ret == ESP_OK);
+    }
     lora_reset ();
 
     // Check Version

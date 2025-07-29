@@ -48,7 +48,7 @@ void app_main (void)
 
     sleep_init(SLEEP_PERIOD);
     switches_init();
-    //lora_init ();
+    lora_init (1);
     pms5003_init (1);
     bme680_init (1);
     gpio_set_level(PMS_SWITCH_PIN, 0);
@@ -82,8 +82,10 @@ void app_main (void)
             vTaskDelay(1000/portTICK_PERIOD_MS);
 
             //RE-INITIALIZE PERIPHERALS
+            lora_init(0);
             bme680_init(0);
             pms5003_init(0);
+            
             pms5003_send_command (0xE4, 0x00, 0x01);
             
         }
